@@ -1,0 +1,15 @@
+*.log
+*.pot
+*.py[cod]
+*.swp
+db.sqlite3
+migrations/
+.env
+.DS_Store
+.env/
+.idea/
+.vscode/
+node_modules/
+*.egg-info/
+static/
+media/

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid" style="background-color: #000; min-height: 100vh;">
+    <div class="row">
+        <!-- Left Side - Movie Posters -->
+        <div class="col-md-8 p-0">
+            <div class="movie-showcase">
+                <div class="row g-0">
+                    {% comment %} Ensure these images exist in static/images/ {% endcomment %}
+                    <div class="col-md-6 p-2">
+                        <div class="movie-poster-container">
+                            <img src="{% static 'images/originals.jpg' %}" class="img-fluid" alt="Originals">
+                            <div class="movie-info">
+                                <h5>Originals</h5>
+                                <p>Apr 26, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        <div class="movie-poster-container">
+                            <img src="{% static 'images/tamasha.jpg' %}" class="img-fluid" alt="Tamasha">
+                            <div class="movie-info">
+                                <h5>Tamasha</h5>
+                                <p>Apr 18, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        <div class="movie-poster-container">
+                            <img src="{% static 'images/yjhd.jpg' %}" class="img-fluid" alt="YJHD">
+                            <div class="movie-info">
+                                <h5>Yeh Jawaani Hai Deewani</h5>
+                                <p>Apr 21, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-2">
+                        <div class="movie-poster-container">
+                            <img src="{% static 'images/znmd.jpg' %}" class="img-fluid" alt="ZNMD">
+                            <div class="movie-info">
+                                <h5>Zindagi Na Milegi Dobara</h5>
+                                <p>Apr 20, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="col-md-4 bg-black text-white p-5">
+            <div class="login-form-container">
+                <h1 class="text-danger mb-4">TICKETFLIX</h1>
+                <h2 class="mb-4">Login</h2>
+                
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    
+                    {% if form.errors %}
+                    <div class="alert alert-danger mb-3">
+                        Invalid username or password.
+                    </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <input type="text" name="username" class="form-control bg-dark text-white border-0 p-3" 
+                               placeholder="Username" required autofocus>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <input type="password" name="password" class="form-control bg-dark text-white border-0 p-3" 
+                               placeholder="Password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-danger w-100 py-3 mb-3">
+                        LOGIN
+                    </button>
+                    
+                    <div class="d-flex justify-content-between mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="remember">
+                            <label class="form-check-label text-muted" for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="text-danger">Need help?</a>
+                    </div>
+                </form>
+                
+                <div class="text-center mt-4">
+                    <p class="text-muted">New to TicketFlix? 
+                        <a href="{% url 'register' %}" class="text-white">Sign up now</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .movie-poster-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .movie-poster-container img {
+        transition: transform 0.3s;
+        width: 100%;
+        height: auto;
+    }
+
+    .movie-poster-container:hover img {
+        transform: scale(1.05);
+    }
+
+    .movie-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        padding: 20px;
+        color: white;
+    }
+
+    .form-control {
+        border-radius: 0;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #dc3545;
+    }
+</style>
+{% endblock %}
